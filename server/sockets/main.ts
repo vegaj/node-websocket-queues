@@ -5,10 +5,9 @@ import { TicketControl } from '../classes/ticket-control';
 
 const ticketControl = new TicketControl();
 
-
 io.on('connect', (client: SocketIO.Socket ) => {
 
-    console.log(`Client ${client.id} connected`);
+    //console.log(`Client ${client.id} connected`);
     client.on('nextTicket', (data, callback) => {
         return callback( {
             ok: false,
@@ -22,12 +21,11 @@ io.on('connect', (client: SocketIO.Socket ) => {
     });
 
     client.on('refresh', (data, callback)=>{
-        //callback(ticketControl.getAttended())
-        callback();
+        callback(ticketControl.getAttended())
     });
 
     client.on('disconnect', () => {
-        console.log(`Client ${client.id} disconnected`);
+        //console.log(`Client ${client.id} disconnected`);
     })
 
     client.on('attend', (data, callback) => {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Public Monitor</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/tickets.css">
+
+</head>
+
+<!-- <body class="container"> -->
+
+<body>
+
+    <div hidden id='err-pane' class='error'>
+        <h1 id='err-msg' class='report-message'>
+            Oops
+        </h1>
+    </div>
+    <audio id='speakers' hidden>
+        <source src="assets/audio/ticket.mp3">
+    </audio>
+
+    <table>
+        <tr>
+            <td valign="middle" class="ticket-actual">
+                <span id="lblTicket1" class="ticket-actual-numero">Ticket <b id='lbl-t-0'></b></span>
+                <br>
+                <span id="lblEscritorio1" class="ticket-actual-escritorio">Desk <b id='lbl-d-0'></b></span>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <span id="lblTicket2" class="ticket-secundario">Ticket <i id='lbl-t-1'></i></span>
+                            <br>
+                            <span id="lblEscritorio2">Desk <i id='lbl-d-1'></i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="lblTicket3" class="ticket-secundario">Ticket <i id='lbl-t-2'></i></span>
+                            <br>
+                            <span id="lblEscritorio3">Desk <i id='lbl-d-2'></i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="lblTicket4" class="ticket-secundario">Ticket <i id='lbl-t-3'></i></span>
+                            <br>
+                            <span id="lblEscritorio4">Desk <i id='lbl-d-3'></i></span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <script src="/assets/js/libs/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/assets/js/panel-socket.js"></script>
+</body>
+
+</html>

@@ -21,6 +21,7 @@ var TicketControl = /** @class */ (function () {
         this.today = new Date().getDate();
         var data = require('../data/data.json');
         if (data.day === this.today) {
+            console.log('restarting');
             this.tickets = data.tickets;
             this.last = data.last;
             this.attended = data.attended;
@@ -37,6 +38,9 @@ var TicketControl = /** @class */ (function () {
         this.tickets.push(new ticket_1.Ticket(this.last));
         this.save();
         return this.last;
+    };
+    TicketControl.prototype.pendignCount = function () {
+        return this.tickets.length;
     };
     TicketControl.prototype.assignDesk = function (desk) {
         var r = { ok: false };

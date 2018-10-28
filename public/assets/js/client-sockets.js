@@ -10,7 +10,6 @@ status.text('Connecting...');
 
 var socket = io();
 
-var clientTicket = undefined;
 
 socket.on('connect', function() {
 
@@ -43,11 +42,8 @@ $('#send-button').on('click', function() {
     socket.emit('nextTicket', null, function(resp) {
         if (resp.ok) {
             $('#ownTicket').text(resp.ticket);
-            $('#send-button').attr('disabled', true);
-            localStorage.setItem('ticket', resp.ticket);
         } else {
             $('#ownTicket').text(`${resp.ticket} same as before`);
-            localStorage.setItem('ticket', resp.ticket);
         }
     });
 });

@@ -9,9 +9,15 @@ io.on('connect', (client: SocketIO.Socket ) => {
 
     //console.log(`Client ${client.id} connected`);
     client.on('nextTicket', (data, callback) => {
+        
+
+        let resp = ticketControl.getNextTicket();
+        //Tell the desks that there is a new ticket pending.
+        client.broadcast.emit('pending', {ok:true, pending: ticketControl.pendignCount()});
+        
         return callback( {
-            ok: false,
-            ticket : ticketControl.getNextTicket(),
+            ok: true,
+            ticket :resp,
         });
     })
 
@@ -21,7 +27,7 @@ io.on('connect', (client: SocketIO.Socket ) => {
     });
 
     client.on('refresh', (data, callback)=>{
-        callback(ticketControl.getAttended())
+        callback(ticketControl.getAttended());
     });
 
     client.on('disconnect', () => {
@@ -34,10 +40,16 @@ io.on('connect', (client: SocketIO.Socket ) => {
         }
 
         let resp = ticketControl.assignDesk(data.desk);
+
         callback(resp);
 
         if (resp.ok){
             client.broadcast.emit('announce', ticketControl.getAttended());
+
+            //Tell to that desktop
+            client.emit('pending', {ok:true, pending: ticketControl.pendignCount()});
+            //Tell everyone
+            client.broadcast.emit('pending', {ok:true, pending: ticketControl.pendignCount()});
         }
         
     });

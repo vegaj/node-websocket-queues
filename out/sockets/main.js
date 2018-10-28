@@ -6,9 +6,12 @@ var ticketControl = new ticket_control_1.TicketControl();
 io.on('connect', function (client) {
     //console.log(`Client ${client.id} connected`);
     client.on('nextTicket', function (data, callback) {
+        var resp = ticketControl.getNextTicket();
+        //Tell the desks that there is a new ticket pending.
+        client.broadcast.emit('pending', { ok: true, pending: ticketControl.pendignCount() });
         return callback({
-            ok: false,
-            ticket: ticketControl.getNextTicket(),
+            ok: true,
+            ticket: resp,
         });
     });
     client.on('current', function (data, callback) {
@@ -29,6 +32,10 @@ io.on('connect', function (client) {
         callback(resp);
         if (resp.ok) {
             client.broadcast.emit('announce', ticketControl.getAttended());
+            //Tell to that desktop
+            client.emit('pending', { ok: true, pending: ticketControl.pendignCount() });
+            //Tell everyone
+            client.broadcast.emit('pending', { ok: true, pending: ticketControl.pendignCount() });
         }
     });
 });

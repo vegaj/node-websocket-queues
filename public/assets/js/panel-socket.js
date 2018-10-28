@@ -28,13 +28,17 @@ function refreshPanel(list) {
         return setTimeout(removeErrorPanel, 3000);
     }
 
-    var min = list.length > panel.length ? panel.length : list.length;
-
-    for (i = 0; i < min; i++) {
+    for (i = 0; i < panel.length; i++) {
         var ticket = list.pop();
 
-        panel[i].ticket.text(ticket.value);
-        panel[i].desk.text(ticket.desk);
+        if (ticket) {
+            panel[i].ticket.text(ticket.value);
+            panel[i].desk.text(ticket.desk);
+        } else {
+            panel[i].ticket.text("-");
+            panel[i].desk.text("-");
+        }
+
     }
     audio = new Audio("/assets/audio/ticket.mp3");
     audio.play();

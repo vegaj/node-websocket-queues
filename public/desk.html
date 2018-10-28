@@ -8,10 +8,16 @@
     <title>Programa de Colas</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/tickets.css" />
 </head>
 
 <body class="container">
     <h1>Desk <span id='pepe'></span></h1>
+
+    <h5 hidden id='pendings-alert' class='report-message info'>
+        There are <span id='pending-count'></span> tickets pending.
+    </h5>
+
     <h4>Attending to
         <small id='ticket'>Nobody</small>
     </h4>

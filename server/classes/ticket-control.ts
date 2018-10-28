@@ -19,6 +19,7 @@ export class TicketControl {
 
         let data = require('../data/data.json');
         if (data.day === this.today) {
+            console.log('restarting');
             this.tickets = data.tickets;
             this.last = data.last;
             this.attended = data.attended;
@@ -38,6 +39,10 @@ export class TicketControl {
 
         this.save();
         return this.last;
+    }
+
+    public pendignCount() : number {
+        return this.tickets.length;
     }
 
     public assignDesk(desk :number) : Response {

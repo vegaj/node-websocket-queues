@@ -23,6 +23,7 @@ $('#submit').on('click', function() {
             $('#ticket')[0].innerText = resp.ticket.value;
         } else {
             $('#ticket')[0].innerText = 'Nobody'
+            alert(resp.err);
         }
 
     });

@@ -1,7 +1,7 @@
 
 import {Ticket} from './ticket';
 import * as fs from 'fs';
-import { Response } from '../Response';
+import { Response } from '../response';
 import path from 'path';
 
 export class TicketControl {
@@ -38,10 +38,6 @@ export class TicketControl {
 
         this.save();
         return this.last;
-    }
-
-    public solveTicket(ticket: number) {
-        this.tickets = this.tickets.filter(x => x.value !== ticket);
     }
 
     public assignDesk(desk :number) : Response {

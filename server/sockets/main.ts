@@ -34,8 +34,14 @@ io.on('connect', (client: SocketIO.Socket ) => {
         if (!data || !data.desk) {
             return callback({ok:false, err: 'provide a desk number'});
         }
-        callback(ticketControl.assignDesk(data.desk));
-        client.broadcast.emit('announce', ticketControl.getAttended());
+
+        let resp = ticketControl.assignDesk(data.desk);
+        callback(resp);
+
+        if (resp.ok){
+            client.broadcast.emit('announce', ticketControl.getAttended());
+        }
+        
     });
 
 });

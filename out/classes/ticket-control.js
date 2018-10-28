@@ -38,9 +38,6 @@ var TicketControl = /** @class */ (function () {
         this.save();
         return this.last;
     };
-    TicketControl.prototype.solveTicket = function (ticket) {
-        this.tickets = this.tickets.filter(function (x) { return x.value !== ticket; });
-    };
     TicketControl.prototype.assignDesk = function (desk) {
         var r = { ok: false };
         if (this.tickets.length === 0) {

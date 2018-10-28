@@ -26,7 +26,10 @@ io.on('connect', function (client) {
         if (!data || !data.desk) {
             return callback({ ok: false, err: 'provide a desk number' });
         }
-        callback(ticketControl.assignDesk(data.desk));
-        client.broadcast.emit('announce', ticketControl.getAttended());
+        var resp = ticketControl.assignDesk(data.desk);
+        callback(resp);
+        if (resp.ok) {
+            client.broadcast.emit('announce', ticketControl.getAttended());
+        }
     });
 });

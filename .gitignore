@@ -1,2 +1,5 @@
 /node_modules/
 # /out/ 
+
+/server/data/data.json
+/out/data/data.json
